@@ -1,10 +1,10 @@
-import React, { Component } from 'react'
+import React  from 'react'
 import axios from 'axios'
 
 const AuthContext = React.createContext()
 export const AuthConsumer = AuthContext.Consumer
 
-export default class AuthProvider extends Component {
+export class AuthProvider extends React.Component {
   state = { user: null }
 
   handleRegister = (user, history) => {
@@ -21,7 +21,7 @@ export default class AuthProvider extends Component {
   handleLogin = (user, history) => {
     axios.post(`/api/auth/sign_in`, user)
       .then( res => {
-        this.setState({ res.data.data })
+        this.setState({ user: res.data.data, })
         history.push('/')
       })
       .catch( res => {
@@ -49,7 +49,7 @@ export default class AuthProvider extends Component {
         handleRegister: this.handleRegister, 
         handleLogin: this.handleLogin,
         handleLogout: this.handleLogout,
-        setUser: (user) = this.setState({ user })
+        setUser: (user) => this.setState({ user })
       }}>
         {this.props.children}
       </AuthContext.Provider>
