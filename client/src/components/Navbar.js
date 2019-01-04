@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 import { AuthConsumer } from '../providers/AuthProvider'
 import { Link, withRouter } from 'react-router-dom'
+import styled from 'styled-components'
 
 class Navbar extends Component {
 
@@ -9,47 +10,34 @@ class Navbar extends Component {
 
     if (user) {
       return( 
-        <>
-          <div 
-            name='logout'
-            onClick={ () => handleLogout(this.props.history)}
-          />
-        </>
+        <div>
+          <div onClick={ () => handleLogout(this.props.history)}>
+          Logout
+          </div>
+        </div>
       )
     } else {
       return(
-        <>
+        <div>
           <Link to='/login'>
-            <div 
-              id='login'
-              name='login'
-              active={location.pathname === '/login'}
-            />
+            <p active={location.pathname === '/login'}>Login</p>
           </Link>
           <Link to='/register'>
-            <div 
-              id='register'
-              name='register'
-              active={location.pathname === '/register'}
-            />
+            <p active={location.pathname === '/register'}>Register</p>
           </Link>
-        </>
+        </div>
       )
     }
   }
 
   render() {
     return (
-      <>
+      <Nav>
         <Link to='/'>
-          <div 
-            name='home'
-            id='home'
-            active={this.props.location.pathname === '/'}
-          />
+          <p active={this.props.location.pathname === '/'}>Home</p>
         </Link>
         { this.rightNavItems() }
-      </>
+      </Nav>
     )
   }
 }
@@ -67,3 +55,13 @@ export class ConnectedNavbar extends React.Component {
 }
 
 export default withRouter(ConnectedNavbar)
+
+// STYLES 
+
+const Nav = styled.p`
+  display: flex
+  justify-content: space-evenly
+  align-items: center 
+  height: 100px
+  background-color: #f7f
+`

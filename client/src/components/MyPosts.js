@@ -1,11 +1,12 @@
 import React from 'react'
 import axios from 'axios'
+import styled from 'styled-components'
 
 class MyPosts extends React.Component {
   state = {posts: []}
 
   componentDidMount() {
-    axios.get(`/api/my_posts`)
+    axios.get(`/api/users`)
       .then( res => this.setState({posts: res.data}))
   }
 
@@ -17,6 +18,7 @@ class MyPosts extends React.Component {
         { posts.map(post =>
           <div key={post.id}>
             <p>{post.title}</p>
+            <p>{post.description}</p>
           </div>
         )}
       </div>
@@ -25,3 +27,6 @@ class MyPosts extends React.Component {
 }
 
 export default MyPosts
+
+// STYLES 
+

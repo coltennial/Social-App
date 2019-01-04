@@ -7,6 +7,7 @@ import Register from './components/Register'
 import FetchUser from './components/FetchUser'
 import ProtectedRoute from './components/ProtectedRoute'
 import MyPosts from './components/MyPosts'
+import AllUsers from './components/AllUsers'
 import { Switch, Route } from 'react-router-dom'
 
 const App = () => (
@@ -16,6 +17,7 @@ const App = () => (
       <Switch>
         <ProtectedRoute exact path='/' component={Home} />
         <ProtectedRoute exact path='/my_posts' component={MyPosts} />
+        <ProtectedRoute exact path='/all_users' component={AllUsers} />
         <Route exact path='/login' component={Login} />
         <Route exact path='/register' component={Register} />
         <Route component={NoMatch} />

@@ -4,5 +4,9 @@ Rails.application.routes.draw do
   namespace :api do
     resources :posts, only: [:index, :update]
     get 'my_posts', to: 'posts#my_posts'
+
+    resources :users, only: [:index]
+    get 'all_users', to: 'users#all_users'
   end
+
 end
